@@ -27,10 +27,10 @@ spec:
                 - containerPort: 80
                   protocol: TCP
 ---
-apiVersion: v1
+apiVersion: v2
 kind: Service
 metadata:
-  name: nodeportsvc
+  name: NodePortService
 spec:
   type: NodePort
   selector:
