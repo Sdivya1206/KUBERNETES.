@@ -1,0 +1,31 @@
+
+
+apiVersion: apps/v1
+kind:  StatefulSet
+metadata: 
+  name: statefull
+  labels:
+    app: deployapp
+spec:
+    selector: 
+      matchLabels: 
+          app: deployapp
+    replicas: 4
+    template:
+      metadata:
+        labels:
+          name: mariadb
+          app: deployapp
+      spec:
+        containers:
+          - name: mysql
+            image: mysql
+            ports:
+                - containerPort: 3306
+                  protocol: TCP
+            env:
+                 - name: MYSQL_ROOT_PASSWORD
+                   valueFrom:
+                        configMapKeyRef:
+                          name: secrets
+                          key: rootpassword
